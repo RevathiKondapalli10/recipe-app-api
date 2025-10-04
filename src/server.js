@@ -6,8 +6,15 @@ import { eq, and } from "drizzle-orm";
 import job from "./config/cron.js";
 
 
-const app=express()
+
 const  PORT=ENV.PORT ||8001; 
+import cors from "cors";
+
+const app = express();
+
+app.use(cors({
+    origin: "*" // allow all domains — not secure for production
+}));
 
 
 if(ENV.NODE_ENV==="production") job.start();
